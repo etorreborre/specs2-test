@@ -18,7 +18,7 @@ class Project(info: ProjectInfo) extends DefaultProject(info) {
   val junit 		= "junit" % "junit" % "4.7"
   val parboiled     = "org.parboiled" % "parboiled4j" % "0.9.9.0"
   val pegdown       = "org.pegdown" % "pegdown" % "0.8.5.4"
-  val specs2        = "org.specs2" %% "specs2" % "1.0-SNAPSHOT"
+  val specs2        = "org.specs2" %% "specs2" % "1.0"
   
   def specs2Framework = new TestFramework("org.specs2.runner.SpecsFramework")
   override def testFrameworks = super.testFrameworks ++ Seq(specs2Framework)
