@@ -1,7 +1,7 @@
 package org.specs2
 package examples
 
-class HelloWorldUnitSpec extends mutable.Specification {
+class HelloWorldUnitSpec extends mutable.SpecificationWithJUnit {
 
   "The 'Hello world' string" should {
     "contain 11 characters" in {
