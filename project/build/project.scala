@@ -16,7 +16,8 @@ class Project(info: ProjectInfo) extends DefaultProject(info) {
   val mockito 	 	  = "org.mockito" % "mockito-all" % "1.8.5" 
   val junit 		    = "junit" % "junit" % "4.7"
   val pegdown       = "org.pegdown" % "pegdown" % "0.9.1"
-  val specs2        = "org.specs2" %% "specs2" % "1.2"
+  val specs2        = "org.specs2" %% "specs2" % "1.3-SNAPSHOT"
+  val scalazcore    = "org.specs2" %% "scalaz-core" % "5.1-SNAPSHOT" 
   
   def specs2Framework = new TestFramework("org.specs2.runner.SpecsFramework")
   override def testFrameworks = super.testFrameworks ++ Seq(specs2Framework)
