@@ -7,7 +7,7 @@ class Project(info: ProjectInfo) extends DefaultProject(info) {
   override def managedDependencyPath = "project" / "lib_managed"
   override def compileOptions = Unchecked :: super.compileOptions.toList
   override def javaCompileOptions = JavaCompileOption("-Xmx256m -Xms64m -Xss1M") :: Nil
-  override def testJavaCompileOptions = JavaCompileOption("-Xmx256m -Xms64m") :: Nil
+  override def testJavaCompileOptions = JavaCompileOption("-Xmx256m -Xms64m -Xss1M") :: Nil
   override def includeTest(s: String) = { s.endsWith("Spec") || s == "index" }
 
   val scalacheck 	  = "org.scala-tools.testing" %% "scalacheck" % "1.8" 
