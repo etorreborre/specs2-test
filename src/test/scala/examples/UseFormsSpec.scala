@@ -1,12 +1,13 @@
 package examples
 import org.specs2._
+
 import specification._
 import form._
 
-class UseFormSpec extends Specification with Forms { def is =
+class UseFormsSpec extends Specification with Forms { def is =
                                                                                                                         """
 This shows an example of Forms in a specification.
-You can run this specification by executing `specs2.html org.specs2.examplesFormSpec`.
+You can run this specification by executing `specs2.html org.specs2.examples.UseFormSpec`.
 
 This will create a html file in the target/specs2-reports directory
                                                                                                                         """^
