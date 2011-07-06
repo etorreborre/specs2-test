@@ -1,9 +1,8 @@
 package examples
-import org.specs2._
 
+import org.specs2._
 import specification._
 import execute.Success
-import mutable._
 
 /**
  * This specification shows how to use the mutable.Specification trait to create a unit Specification
