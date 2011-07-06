@@ -1,6 +1,6 @@
 package examples
-import org.specs2._
 
+import org.specs2._
 import specification._
 import form._
 
@@ -39,14 +39,14 @@ This will create a html file in the target/specs2-reports directory
   case class Person(firstName: String, lastName: String) {
     def initials = firstName.take(1).capitalize+"."+lastName.take(1).capitalize+"."      
   }              
+}
 
+import specification.Forms._
 
-  case class Address(street: String, number: Int) {
-    def form = fill(street, number)
-    def fill(s: String, n: Int) =
-      Form("Address").
-          tr(prop("street", s)(street)).
-          tr(prop("number", n)(number))
-  }
-
+case class Address(street: String, number: Int) {
+  def form = fill(street, number)
+  def fill(s: String, n: Int) =
+    Form("Address").
+        tr(prop("street", s)(street)).
+        tr(prop("number", n)(number))
 }
