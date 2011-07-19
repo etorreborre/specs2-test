@@ -38,11 +38,13 @@ pollInterval := 1000
 
 testFrameworks += new TestFramework("org.specs2.runner.SpecsFramework")
 
-testOptions := Seq(Tests.Filter(s =>
+testOptions := Seq(Tests.Filter { s => 
   Seq("Spec", "Suite", "Unit", "all").exists(s.endsWith(_)) &&
-    ! s.endsWith("FeaturesSpec") ||
+    !s.endsWith("FeaturesSpec") ||
     s.contains("UserGuide") || 
-    s.matches("org.specs2.guide.*")))
+	s.endsWith("index") ||
+    s.matches("org.specs2.guide.*")
+  })
 
 /** Console */
 initialCommands in console := "import org.specs2._"
