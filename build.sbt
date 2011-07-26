@@ -1,7 +1,7 @@
 /** Project */
 name := "specs2-test"
 
-version := "1.4"
+version := "1.5"
 
 organization := "org.specs2"
 
@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   "org.scala-tools.testing" %% "scalacheck" % "1.9", 
   "org.scala-tools.testing" % "test-interface" % "0.5", 
   "org.specs2" %% "specs2-scalaz-core" % "6.0.RC2",
-  "org.specs2" %% "specs2" % "1.5-SNAPSHOT",
+  "org.specs2" %% "specs2" % "1.5",
   "org.hamcrest" % "hamcrest-all" % "1.1",
   "org.mockito" % "mockito-all" % "1.8.5",
   "junit" % "junit" % "4.7",
