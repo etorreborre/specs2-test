@@ -20,7 +20,7 @@ libraryDependencies ++= Seq(
   "org.scala-tools.testing" %% "scalacheck" % "1.9", 
   "org.scala-tools.testing" % "test-interface" % "0.5", 
   "org.specs2" %% "specs2-scalaz-core" % "6.0.1",
-  "org.specs2" %% "specs2" % "1.7-SNAPSHOT",
+  "org.specs2" %% "specs2" % "1.7",
   "org.hamcrest" % "hamcrest-all" % "1.1",
   "org.mockito" % "mockito-all" % "1.8.5",
   "junit" % "junit" % "4.7",
@@ -36,7 +36,7 @@ maxErrors := 20
 
 pollInterval := 1000
 
-testFrameworks += new TestFramework("org.specs2.runner.SpecsFramework")
+logBuffered := false
 
 testOptions := Seq(Tests.Filter(s =>
   Seq("Spec", "Suite", "Unit", "all").exists(s.endsWith(_)) &&
@@ -50,6 +50,27 @@ initialCommands in console := "import org.specs2._"
 // Packaging
 
 /** Publishing */
+
+seq(releaseSettings: _*)
+
+releaseProcess <<= thisProjectRef apply { ref =>
+  import ReleaseStateTransformations._
+  Seq[ReleasePart](
+    initialGitChecks,                     
+    checkSnapshotDependencies,    
+    releaseTask(check in Posterous in ref),  
+    inquireVersions,                        
+    setReleaseVersion,                      
+    runTest,                                
+    commitReleaseVersion,                   
+    tagRelease,                             
+    releaseTask(publish in Global in ref),
+    releaseTask(publish in Posterous in ref),    
+    setNextVersion,                         
+    commitNextVersion                       
+  )
+}
+
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 publishTo <<= (version) { version: String =>
