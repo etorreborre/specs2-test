@@ -50,7 +50,6 @@ initialCommands in console := "import org.specs2._"
 // Packaging
 
 /** Publishing */
-
 seq(releaseSettings: _*)
 
 releaseProcess <<= thisProjectRef apply { ref =>
