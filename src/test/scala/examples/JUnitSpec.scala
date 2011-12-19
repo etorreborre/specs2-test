@@ -5,7 +5,7 @@ import org.specs2.matcher._
 /**
  * This class shows how to use spec matchers in a JUnit specification
  */
-class JUnitTest extends JUnitMustMatchers {
+class JUnitSpec extends JUnitMustMatchers {
 
   @Test
   def test1 {
