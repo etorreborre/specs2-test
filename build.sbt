@@ -1,3 +1,7 @@
+import sbtrelease._
+import Release._
+import ReleaseKeys._
+
 /** Project */
 name := "specs2-test"
 
@@ -57,14 +61,12 @@ releaseProcess <<= thisProjectRef apply { ref =>
   Seq[ReleasePart](
     initialGitChecks,                     
     checkSnapshotDependencies,    
-    releaseTask(check in Posterous in ref),  
     inquireVersions,                        
     setReleaseVersion,                      
     runTest,                                
     commitReleaseVersion,                   
     tagRelease,                             
     releaseTask(publish in Global in ref),
-    releaseTask(publish in Posterous in ref),    
     setNextVersion,                         
     commitNextVersion                       
   )
