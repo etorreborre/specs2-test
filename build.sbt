@@ -26,14 +26,13 @@ libraryDependencies ++= Seq(
   "org.specs2" %% "specs2-scalaz-core" % "6.0.1",
   "org.specs2" %% "specs2" % "1.8-SNAPSHOT",
   "org.hamcrest" % "hamcrest-all" % "1.1",
-  "org.mockito" % "mockito-all" % "1.8.5",
+  "org.mockito" % "mockito-all" % "1.9.0",
   "junit" % "junit" % "4.7",
   "org.pegdown" % "pegdown" % "1.0.2"
 )
 
 /** Compilation */
-javacOptions ++= Seq("-Xmx1812m", "-Xms512m", "-Xss4m")
-
+//javacOptions ++= Seq("-Xmx1812m", "-Xms512m", "-Xss4m")
 scalacOptions += "-deprecation"
 
 maxErrors := 20
