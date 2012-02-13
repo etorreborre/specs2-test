@@ -5,7 +5,7 @@ import ReleaseKeys._
 /** Project */
 name := "specs2-test"
 
-version := "1.8-SNAPSHOT"
+version := "1.8"
 
 organization := "org.specs2"
 
@@ -17,8 +17,7 @@ shellPrompt := { state => System.getProperty("user.name") + "> " }
 shellPrompt in ThisBuild := { state => Project.extract(state).currentRef.project + "> " }
 
 /** Dependencies */
-resolvers ++= Seq("snapshots-repo" at "http://scala-tools.org/repo-snapshots", 
-                  "Local Maven Repository" at "file://$M2_REPO")
+resolvers ++= Seq("snapshots-repo" at "http://oss.sonatype.org/content/repositories/snapshots")
 
 libraryDependencies ++= Seq(
   "org.scala-tools.testing" %% "scalacheck" % "1.9", 
@@ -28,11 +27,11 @@ libraryDependencies ++= Seq(
   "org.hamcrest" % "hamcrest-all" % "1.1",
   "org.mockito" % "mockito-all" % "1.9.0",
   "junit" % "junit" % "4.7",
-  "org.pegdown" % "pegdown" % "1.0.2"
+  "org.pegdown" % "pegdown" % "1.0.2",
+  "org.specs2" % "classycle" % "1.4.1"
 )
 
 /** Compilation */
-//javacOptions ++= Seq("-Xmx1812m", "-Xms512m", "-Xss4m")
 scalacOptions += "-deprecation"
 
 maxErrors := 20
@@ -50,31 +49,3 @@ testOptions := Seq(Tests.Filter(s =>
 /** Console */
 initialCommands in console := "import org.specs2._"
 
-// Packaging
-
-/** Publishing */
-seq(releaseSettings: _*)
-
-releaseProcess <<= thisProjectRef apply { ref =>
-  import ReleaseStateTransformations._
-  Seq[ReleasePart](
-    initialGitChecks,                     
-    checkSnapshotDependencies,    
-    inquireVersions,                        
-    setReleaseVersion,                      
-    runTest,                                
-    commitReleaseVersion,                   
-    tagRelease,                             
-    releaseTask(publish in Global in ref),
-    setNextVersion,                         
-    commitNextVersion                       
-  )
-}
-
-credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
-
-publishTo <<= (version) { version: String =>
-  val nexus = "http://nexus-direct.scala-tools.org/content/repositories/"
-  if (version.trim.endsWith("SNAPSHOT")) Some("snapshots" at nexus+"snapshots/") 
-  else                                   Some("releases" at nexus+"releases/")
-}
