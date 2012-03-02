@@ -1,11 +1,7 @@
-import sbtrelease._
-import Release._
-import ReleaseKeys._
-
 /** Project */
 name := "specs2-test"
 
-version := "1.8.2"
+version := "1.9.0"
 
 organization := "org.specs2"
 
@@ -13,8 +9,6 @@ scalaVersion := "2.9.1"
 
 /** Shell */
 shellPrompt := { state => System.getProperty("user.name") + "> " }
-
-shellPrompt in ThisBuild := { state => Project.extract(state).currentRef.project + "> " }
 
 /** Dependencies */
 resolvers ++= Seq("snapshots-repo" at "http://oss.sonatype.org/content/repositories/snapshots")
