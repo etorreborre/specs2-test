@@ -17,7 +17,8 @@ shellPrompt := { state => System.getProperty("user.name") + "> " }
 shellPrompt in ThisBuild := { state => Project.extract(state).currentRef.project + "> " }
 
 /** Dependencies */
-resolvers ++= Seq("snapshots-repo" at "http://oss.sonatype.org/content/repositories/snapshots")
+resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
+                  "releases" at "http://oss.sonatype.org/content/repositories/releases")
 
 libraryDependencies ++= Seq(
   "org.scala-tools.testing" %% "scalacheck" % "1.9", 
