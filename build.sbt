@@ -1,11 +1,11 @@
 /** Project */
 name := "specs2-test"
 
-version := "1.9-SNAPSHOT"
+version := "1.10"
 
 organization := "org.specs2"
 
-scalaVersion := "2.9.1"
+scalaVersion := "2.9.2"
 
 /** Shell */
 shellPrompt := { state => System.getProperty("user.name") + "> " }
@@ -14,10 +14,10 @@ shellPrompt := { state => System.getProperty("user.name") + "> " }
 resolvers ++= Seq("snapshots-repo" at "http://oss.sonatype.org/content/repositories/snapshots")
 
 libraryDependencies ++= Seq(
-  "org.scala-tools.testing" %% "scalacheck" % "1.9", 
+  "org.scalacheck" %% "scalacheck" % "1.9", 
   "org.scala-tools.testing" % "test-interface" % "0.5", 
   "org.specs2" %% "specs2-scalaz-core" % "6.0.1",
-  "org.specs2" %% "specs2" % "1.9-SNAPSHOT",
+  "org.specs2" %% "specs2" % "1.10",
   "org.hamcrest" % "hamcrest-all" % "1.1",
   "org.mockito" % "mockito-all" % "1.9.0",
   "junit" % "junit" % "4.7",
