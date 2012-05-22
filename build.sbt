@@ -1,7 +1,7 @@
 /** Project */
 name := "specs2-test"
 
-version := "1.10"
+version := "1.11"
 
 organization := "org.specs2"
 
@@ -17,7 +17,7 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.9", 
   "org.scala-tools.testing" % "test-interface" % "0.5", 
   "org.specs2" %% "specs2-scalaz-core" % "6.0.1",
-  "org.specs2" %% "specs2" % "1.10",
+  "org.specs2" %% "specs2" % "1.11-SNAPSHOT",
   "org.hamcrest" % "hamcrest-all" % "1.1",
   "org.mockito" % "mockito-all" % "1.9.0",
   "junit" % "junit" % "4.7",
@@ -35,10 +35,8 @@ pollInterval := 1000
 logBuffered := false
 
 testOptions := Seq(Tests.Filter(s =>
-  Seq("Spec", "Suite", "Unit", "all").exists(s.endsWith(_)) &&
-    ! s.endsWith("FeaturesSpec") ||
-    s.contains("UserGuide") || 
-    s.matches("org.specs2.guide.*")))
+  Seq("Spec", "Suite", "Unit", "all", "index").exists(s.endsWith(_)) &&
+    s.startsWith("examples")))
 
 /** Console */
 initialCommands in console := "import org.specs2._"
