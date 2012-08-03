@@ -2,6 +2,7 @@ package examples
 
 import org.specs2._
 import specification.{Before, BeforeExample, Context, Outside}
+import org.scalacheck.{Prop, Gen}
 
 /**
  * This specification shows various ways to setup contexts for examples.
@@ -14,7 +15,7 @@ class DefineContextsSpec extends Specification {
    * This specification uses a context class extending the `Before` trait.
    * It is also creating "fresh" variables for each example
    */
-  class BeforeSpec extends Specification { def is =
+  class BeforeSpecification extends Specification { def is =
     "This is a list of examples"                                     ^
       "example1"                                                     ! clean().e1^
       "example2"                                                     ! clean().e2^
@@ -32,7 +33,7 @@ class DefineContextsSpec extends Specification {
   /**
    * This specification uses an implicit context for each example
    */
-  class BeforeWithImplicitContextSpec extends Specification { def is = sequential^
+  class BeforeWithImplicitContextSpecification extends Specification { def is = sequential^
     "This is a list of examples" ^
       "example1" ! { i += 1; i must_== 1 } ^
       "example2" ! { i += 1; i must_== 1 } ^
@@ -45,7 +46,7 @@ class DefineContextsSpec extends Specification {
   /**
    * This specification uses an implicit Outside context for each example
    */
-  class OutsideWithImplicitContextSpec extends Specification { def is =
+  class OutsideWithImplicitContextSpecification extends Specification { def is =
 
     "This is a list of examples"                                     ^
       "example1"                                                     ! e1^
@@ -59,9 +60,24 @@ class DefineContextsSpec extends Specification {
   }
 
   /**
+   * This specification uses an implicit Outside context for each example and ScalaCheck properties
+   */
+  class OutsideWithImplicitScalaCheckContextSpecification extends Specification with ScalaCheck { def is =
+
+    "This is a list of examples"                                     ^
+      "example1"                                                     ! e1^
+      "example2"                                                     ! e2^
+      end
+
+    implicit val outside: Outside[Int] = new Outside[Int] { def outside = 1 }
+
+    def e1 = (i: Int) => Prop.forAll(Gen.choose(1, 10)) { (n: Int) => n must be_>=(i) }
+    def e2 = (i: Int) => Prop.forAll(Gen.choose(1, 10)) { (n: Int) => n must be_>=(i) }
+  }
+  /**
    * Same thing as above for a mutable specification
    */
-  class BeforeMutableSpec extends mutable.Specification {
+  class BeforeMutableSpecification extends mutable.Specification {
     "This is a list of examples" >> {
       "example1" >> new clean {
         aNewSystem must_== "a fresh value"
@@ -82,7 +98,7 @@ class DefineContextsSpec extends Specification {
    * This specification uses the `BeforeExample` trait to execute some code before each example
    * by simply defining a `before` method
    */
-  class BeforeExampleSpec extends Specification with BeforeExample { def is =
+  class BeforeExampleSpecification extends Specification with BeforeExample { def is =
     "This is a list of examples"                                     ^
       "example1"                                                     ! success^
       "example2"                                                     ! success^
@@ -93,7 +109,7 @@ class DefineContextsSpec extends Specification {
   /**
    * This mutable specification also uses the `BeforeExample` trait
    */
-  class BeforeExampleMutableSpec extends mutable.Specification with BeforeExample {
+  class BeforeExampleMutableSpecification extends mutable.Specification with BeforeExample {
     "This is a list of examples" >> {
       "example1"                 >> success
       "example2"                 >> success
@@ -105,10 +121,11 @@ class DefineContextsSpec extends Specification {
   def println(s: String) = s // change this definition to see messages in the console
 
   def is = sequential^
-           new BeforeSpec ^
-           new BeforeWithImplicitContextSpec ^
-           new OutsideWithImplicitContextSpec ^
-           new BeforeMutableSpec ^
-           new BeforeExampleMutableSpec ^
-           new BeforeExampleSpec
+           new BeforeSpecification ^
+           new BeforeWithImplicitContextSpecification ^
+           new OutsideWithImplicitContextSpecification ^
+           new OutsideWithImplicitScalaCheckContextSpecification ^
+           new BeforeMutableSpecification ^
+           new BeforeExampleMutableSpecification ^
+           new BeforeExampleSpecification
 }

@@ -8,14 +8,14 @@ import org.specs2.mutable.Specification
 class TimeoutContextSpec extends Specification with ExamplesTimeout {
 
   "This example should pass" >> {
-   { Thread.sleep(50); 1 } must_== 1
+    { Thread.sleep(50); 1 } must_== 1
   }
 //  "This example should timeout" >> {
 //    def loop: Unit = loop;
 //    { loop; 1 } must_== 1
 //  }
 //  "This example should fail" >> {
-//    { Thread.sleep(5); 2 } must_== 1
+//    { Thread.sleep(50); 2 } must_== 1
 //  }
 }
 
