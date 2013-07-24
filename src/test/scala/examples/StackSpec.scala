@@ -1,44 +1,52 @@
 package examples
 
 import org.specs2._
+
 /**
- * This specification shows how both examples and data can be combined for maximum reusability.
+ * This specification shows how to reuse examples and data.
  *
- * For example `nonEmptyStack` is a list of examples which can be reused with both a `normal` or a `full` stack.
+ * For example `nonEmptyStack` is a list of examples which are used to specify
+ * - the case of a `normal` (non-empty) stack
+ * - the case of a `full` stack
+ *
+ * Those examples are reused with different data in each case
  */
-class StackSpec extends Specification { def is =
+class StackSpec extends Specification { def is = s2""" ${ "Specification for a Stack with a limited capacity".title }
 
-  "Specification for a Stack with a limited capacity".title                  ^
-                                                                             p^
-  "A Stack with limited capacity can either be:"                             ^ endp^
-    "1. Empty"                                                               ^ anEmptyStack^
-    "2. Normal (i.e. not empty but not full)"                                ^ aNormalStack^
-    "3. Full"                                                                ^ aFullStack^end
+ A Stack with limited capacity can either be:                             $endp
+   1. Empty                                                               $anEmptyStack
+   2. Normal (i.e. not empty but not full)                                $aNormalStack
+   3. Full                                                                $aFullStack
+                                                                          """
 
-  def anEmptyStack =                                                         p^
-    "An empty stack should"                                                  ^
-      "have a size == 0"                                                     ! empty().e1^
-      "throw an exception when sent #top"                                    ! empty().e2^
-      "throw an exception when sent #pop"                                    ! empty().e3^endbr
+  /** examples for an empty stack */
+  def anEmptyStack =                                                       s2"""
+    An empty stack should
+      have a size == 0                                                     ${empty().e1}
+      throw an exception when sent #top                                    ${empty().e2}
+      throw an exception when sent #pop                                    ${empty().e3}
+                                                                           """
 
-  def aNormalStack =                                                         p^
-    "A normal stack should"                                                  ^
-      "behave like a non-empty stack"                                        ^ nonEmptyStack(newNormalStack)^
-      "add to the top when sent #push"                                       ! nonFullStack().e1^endbr
-
-  def aFullStack =                                                           p^
-    "A full stack should"                                                    ^
-      "behave like a non-empty stack"                                        ^ nonEmptyStack(newFullStack)^
-      "throw an exception when sent #push"                                   ! fullStack().e1
-
-  def nonEmptyStack(stack: =>SizedStack) = {                                 t^
-    "have a size > 0"                                                        ! nonEmpty(stack).size^
-    "return the top item when sent #top"                                     ! nonEmpty(stack).top1^
-    "not remove the top item when sent #top"                                 ! nonEmpty(stack).top2^
-    "return the top item when sent #pop"                                     ! nonEmpty(stack).pop1^
-    "remove the top item when sent #pop"                                     ! nonEmpty(stack).pop2^bt
-  }
-
+  /** examples for a normal stack */
+  def aNormalStack =                                                       p^s2"""
+    A normal stack should
+      behave like a non-empty stack                                        ${nonEmptyStack(newNormalStack)}
+      add to the top when sent #push                                       ${nonFullStack().e1}
+                                                                           """
+  /** examples for a full stack */
+  def aFullStack =                                                         p^s2"""
+    A full stack should
+      behave like a non-empty stack                                        ${nonEmptyStack(newFullStack)}
+      throw an exception when sent #push                                   ${fullStack().e1}
+                                                                           """
+  /** examples for a non-empty stack */
+  def nonEmptyStack(stack: =>SizedStack) =                                 t^s2"""
+    have a size > 0                                                        ${nonEmpty(stack).size}
+    return the top item when sent #top                                     ${nonEmpty(stack).top1}
+    not remove the top item when sent #top                                 ${nonEmpty(stack).top2}
+    return the top item when sent #pop                                     ${nonEmpty(stack).pop1}
+    remove the top item when sent #pop                                     ${nonEmpty(stack).pop2}
+                                                                           """
   /** stacks creation */
   def newEmptyStack  = SizedStack(maxCapacity = 10, size = 0)
   def newNormalStack = SizedStack(maxCapacity = 10, size = 2)

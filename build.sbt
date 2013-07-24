@@ -3,7 +3,7 @@ name := "specs2-test"
 
 organization := "org.specs2"
 
-scalaVersion := "2.10.0"
+scalaVersion := "2.10.2"
 
 /** Shell */
 shellPrompt := { state => System.getProperty("user.name") + "> " }
@@ -14,16 +14,21 @@ resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/s
 
 libraryDependencies <++= version { version =>
   Seq(
-    "org.specs2" %% "specs2" % version,
-    "org.scalacheck" %% "scalacheck" % "1.10.0", 
-    "org.scala-tools.testing" % "test-interface" % "0.5", 
-    "org.hamcrest" % "hamcrest-all" % "1.1",
-    "org.mockito" % "mockito-all" % "1.9.0",
-    "junit" % "junit" % "4.7",
-    "org.pegdown" % "pegdown" % "1.0.2",
-    "org.specs2" % "classycle" % "1.4.1" 
+    "org.specs2"      %% "specs2"       % version,
+    "org.scala-lang"  % "scala-reflect" % "2.10.2",
+    "com.chuusai"     %% "shapeless"    % "1.2.4", 
+    "org.scalacheck"  %% "scalacheck"   % "1.10.0", 
+    "org.hamcrest"    % "hamcrest-all"  % "1.1",
+    "org.mockito"     % "mockito-all"   % "1.9.0",
+    "junit"           % "junit"         % "4.11",
+    "org.pegdown"     % "pegdown"       % "1.2.1",
+    "org.specs2"      % "classycle"     % "1.4.1" 
   )
 }
+
+scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature", "-language:implicitConversions,reflectiveCalls,postfixOps,higherKinds,existentials,experimental.macros")
+
+scalacOptions in Test ++= Seq("-Yrangepos")
 
 logBuffered := false
 
