@@ -6,6 +6,6 @@ Please go to http://specs2.org for more information
 To run tests:
 <code>sbt test</code>
 
-To gengerate html pages:
+To generate html pages:
 <code>sbt test-only -- html</code>
 
