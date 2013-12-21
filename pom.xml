@@ -2,88 +2,36 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.specs2</groupId>
-    <artifactId>specs2-test_2.9.1</artifactId>
+    <artifactId>specs2-test_2.10</artifactId>
     <packaging>jar</packaging>
-    <version>1.7-SNAPSHOT</version>
+    <version>2.3.6</version>
     <dependencies>
         <dependency>
             <groupId>org.specs2</groupId>
-            <artifactId>specs2_2.9.1</artifactId>
-            <version>1.7.1</version>
+            <artifactId>specs2_2.10</artifactId>
+            <version>2.3.6</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.pegdown</groupId>
-            <artifactId>pegdown</artifactId>
-            <version>1.0.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.specs2</groupId>
-            <artifactId>specs2-scalaz-core_2.9.1</artifactId>
-            <version>6.0.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scala-tools.testing</groupId>
-            <artifactId>scalacheck_2.9.1</artifactId>
-            <version>1.9</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.8.5</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.scala-tools.testing</groupId>
-            <artifactId>test-interface</artifactId>
-            <version>0.5</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <version>1.1</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.7</version>
+            <version>4.11</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.9.1</version>
+            <version>2.10.3</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
     <repositories>
-        <repository>
-            <id>snapshotsrepo</id>
-            <name>snapshots-repo</name>
-            <url>http://scala-tools.org/repo-snapshots/</url>
-        </repository>
         <repository> 
             <id>central</id> 
             <name>Maven Repository</name> 
             <layout>default</layout> 
             <url>http://repo1.maven.org/maven2</url> 
         </repository> 
-        <repository> 
-            <id>ObjectWeb</id> 
-            <name>ObjectWeb</name> 
-            <layout>default</layout> 
-            <url>http://maven.ow2.org/maven2</url> 
-        </repository> 
-        <repository>
-            <id>ScalaToolsMaven2Repository</id>
-            <name>Scala-Tools Maven2 Repository</name>
-            <url>http://scala-tools.org/repo-releases/</url>
-        </repository>
     </repositories>
 	<build>
 	    <plugins>
@@ -101,6 +49,7 @@
    			    </executions>
                 <configuration>
                   <args>
+                    <arg>-language:_</arg>
                     <arg>-unchecked</arg>
                   </args>
                   <jvmArgs>
@@ -112,16 +61,14 @@
 		    <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.7.2</version>
+                <version>2.16</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <argLine>-Xmx1024m</argLine>
                     <includes>
+                        <exclude>**/*Test.java</exclude>
                         <include>**/*Spec.java</include>
                     </includes>
-                    <excludes>
-                        <exclude>**/*Test.java</exclude>
-                        </excludes>
                 </configuration>
             </plugin>
 		</plugins>

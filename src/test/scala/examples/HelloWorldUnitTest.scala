@@ -2,7 +2,7 @@ package examples
 
 import org.specs2._
 
-class HelloWorldUnitSpec extends mutable.Specification {
+class HelloWorldUnitTest extends mutable.SpecificationWithJUnit {
   "The 'Hello world' string" should {
     "contain 11 characters" in {
       "Hello world" must have size(11)
