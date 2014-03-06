@@ -14,15 +14,14 @@ resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"),
 
 libraryDependencies <++= version { version =>
   Seq(
-    "org.specs2"      %% "specs2"           % "2.3",
-    "org.scala-lang"  %  "scala-reflect"    % "2.10.3",
-    "com.chuusai"     %  "shapeless_2.10.2" % "2.0.0-M1", 
-    "org.scalacheck"  %% "scalacheck"       % "1.10.0", 
-    "org.hamcrest"    %  "hamcrest-core"    % "1.3",
-    "org.mockito"     %  "mockito-core"     % "1.9.5",
-    "junit"           %  "junit"            % "4.11",
-    "org.pegdown"     %  "pegdown"          % "1.2.1",
-    "org.specs2"      %  "classycle"        % "1.4.1" 
+    "org.specs2"      %% "specs2-core"           % "2.3.10",
+    "org.specs2"      %% "specs2-matcher-extra"  % "2.3.10",
+    "org.specs2"      %% "specs2-gwt"            % "2.3.10",
+    "org.specs2"      %% "specs2-html"           % "2.3.10",
+    "org.specs2"      %% "specs2-form"           % "2.3.10",
+    "org.specs2"      %% "specs2-scalacheck"     % "2.3.10",
+    "org.specs2"      %% "specs2-mock"           % "2.3.10",
+    "org.specs2"      %% "specs2-junit"          % "2.3.10"
   )
 }
 

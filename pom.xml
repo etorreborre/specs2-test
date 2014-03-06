@@ -64,7 +64,7 @@
                 <version>2.16</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
-                    <argLine>-Xmx1024m</argLine>
+                    <argLine>-Xmx1024m -Dspecs2.console</argLine>
                     <includes>
                         <exclude>**/*Test.java</exclude>
                         <include>**/*Spec.java</include>
