@@ -25,7 +25,7 @@ libraryDependencies <++= version { version =>
   )
 }
 
-addCompilerPlugin("org.scala-lang.plugins" % "macro-paradise_2.10.3-RC1" % "2.0.0-SNAPSHOT")
+addCompilerPlugin("org.scalamacros" %% "paradise" % "2.0.0-M4" cross CrossVersion.full)
 
 scalacOptions ++= Seq("-Yrangepos", "-deprecation", "-unchecked", "-feature", "-language:_")
 
