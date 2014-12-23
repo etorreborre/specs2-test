@@ -3,29 +3,31 @@ name := "specs2-test"
 
 organization := "org.specs2"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.4"
 
 /** Shell */
 shellPrompt := { state => System.getProperty("user.name") + "> " }
 
 /** Dependencies */
-resolvers ++= Seq(Resolver.sonatypeRepo("snapshots"),
-                  Resolver.sonatypeRepo("releases"))
+resolvers ++= 
+    Seq(Resolver.sonatypeRepo("releases"), 
+        Resolver.sonatypeRepo("snapshots"),
+        Resolver.typesafeRepo("releases"),
+        "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases")
+  
 
 libraryDependencies <++= version { version =>
   Seq(
-    "org.specs2"      %% "specs2-core"           % "2.3.10",
-    "org.specs2"      %% "specs2-matcher-extra"  % "2.3.10",
-    "org.specs2"      %% "specs2-gwt"            % "2.3.10",
-    "org.specs2"      %% "specs2-html"           % "2.3.10",
-    "org.specs2"      %% "specs2-form"           % "2.3.10",
-    "org.specs2"      %% "specs2-scalacheck"     % "2.3.10",
-    "org.specs2"      %% "specs2-mock"           % "2.3.10",
-    "org.specs2"      %% "specs2-junit"          % "2.3.10"
-  )
+    "org.specs2"      %% "specs2-core"         ,
+    "org.specs2"      %% "specs2-matcher-extra",
+    "org.specs2"      %% "specs2-gwt"          ,
+    "org.specs2"      %% "specs2-html"         ,
+    "org.specs2"      %% "specs2-form"         ,
+    "org.specs2"      %% "specs2-scalacheck"   ,
+    "org.specs2"      %% "specs2-mock"         ,
+    "org.specs2"      %% "specs2-junit"        
+  ).map(_ % version)
 }
-
-addCompilerPlugin("org.scalamacros" %% "paradise" % "2.0.0-M4" cross CrossVersion.full)
 
 scalacOptions ++= Seq("-Yrangepos", "-deprecation", "-unchecked", "-feature", "-language:_")
 

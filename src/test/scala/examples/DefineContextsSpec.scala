@@ -43,13 +43,15 @@ class DefineContextsSpec extends Specification {
     s2""" $sequential
 
     This is a list of examples
-    ${ "example1"                     ! e }
-    ${ "example2"                     ! e }
+    ${ "example1"                     ! e1 }
+    ${ "example2"                     ! e2 }
 
     """
 
     var i = 0
-    def e = { i += 1; i must_== 1 }
+    def e1 = { i += 1; i must_== 1 }
+    def e2 = { i += 1; i must_== 2 }
+
     implicit val before: Context = new Before { def before = i = 0 }
   }
 
