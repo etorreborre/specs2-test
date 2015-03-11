@@ -1,6 +1,7 @@
 package examples
 
 import org.specs2._
+import specification.core._
 
 /**
  * This specification shows how to reuse examples and data.
@@ -11,9 +12,9 @@ import org.specs2._
  *
  * Those examples are reused with different data in each case
  */
-class StackSpec extends Specification { def is = s2""" ${ "Specification for a Stack with a limited capacity".title }
+class StackSpec extends Specification { def is =  "Specification for a Stack with a limited capacity".title ^ s2"""
 
- A Stack with limited capacity can either be:                             $endp
+ A Stack with limited capacity can either be:                             $p
    1. Empty                                                               $anEmptyStack
    2. Normal (i.e. not empty but not full)                                $aNormalStack
    3. Full                                                                $aFullStack
@@ -40,7 +41,7 @@ class StackSpec extends Specification { def is = s2""" ${ "Specification for a S
       throw an exception when sent #push                                   ${fullStack().e1}
                                                                            """
   /** examples for a non-empty stack */
-  def nonEmptyStack(stack: =>SizedStack) =                                 t^s2"""
+  def nonEmptyStack(stack: =>SizedStack): Fragments =                      s2"""
     have a size > 0                                                        ${nonEmpty(stack).size}
     return the top item when sent #top                                     ${nonEmpty(stack).top1}
     not remove the top item when sent #top                                 ${nonEmpty(stack).top2}

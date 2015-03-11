@@ -13,13 +13,14 @@ import specification.{Before, Scope}
  *  - how to create Steps
  *  - how to create examples
  *  - how to use traits to provide vals to each example and set the context
- *  - how create links to other specifications or include them
+ *  - how create references to other specifications or include them
  *
  */
 class UnitSpec extends mutable.Specification {
 
   // A title can be added at the beginning of the specification
   "MutableSpec".title
+
   // arguments are simply declared at the beginning of the specification if needed
   args(xonly=true)
   
@@ -31,7 +32,7 @@ class UnitSpec extends mutable.Specification {
 
   "'Hello world'" should {
     "contain 11 characters" in {
-      "Hello world" must have size(11)
+      "Hello world" must haveSize(11)
     }
     "start with 'Hello'" in {
       "Hello world" must startWith("Hello")
@@ -53,19 +54,15 @@ class UnitSpec extends mutable.Specification {
   "'Hey you'" should {
     // this one uses a "before" method
     "contain 7 characters" in context {
-      "Hey you" must have size(7)
+      "Hey you" must haveSize(7)
     }
     // System is a Success result. If the expectations fail when building the object, the example will fail
     "contain 7 characters" in new system {
-      string must have size(7)
+      string must haveSize(7)
     }
-    // otherwise a case class can be used but the example body will be further down the file
-    "contain 7 characters" in system2().e1
   }
-  // you can add links to other specifications with `link`
-  link("how" ~ ("to do hello world", new IncludedSpec))
-  // you can include other specifications with `include`
-  include(new IncludedSpec)
+  // you can add references to other specifications
+  "how" ~ (new IncludedSpec)
 
   // a step to execute after the specification must be declared at the end
   step {
@@ -80,10 +77,6 @@ class UnitSpec extends mutable.Specification {
   // we need to extend Scope to be used as an Example body
   trait system extends Scope {
     val string = "Hey you"
-  }
-  case class system2() {
-    val string = "Hey you"
-    def e1 = string must have size(7)
   }
 
   class IncludedSpec extends Specification { def is = "introduction" ^ "example" ! success }

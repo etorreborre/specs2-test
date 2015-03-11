@@ -8,25 +8,27 @@ import org.specs2.matcher._
 class JUnitTest extends JUnitMustMatchers {
 
   @Test
-  def test1 {
-    "Hello world" must have size(11)
+  def test1() {
+    "Hello world" must haveSize(11)
   }
 
   @Test
-  def test2 {
+  def test2() {
     "Hello world" must startWith("Hello")
   }
 
   @Test
-  def test3 {
+  def test3() {
     "Hello world" must endWith("world")
   }
 
   @Test
-  def test4 {
+  def test4() {
     "Hello world" must endWithWorld
   }
 
   // custom matchers can be created by coercing a function T => (Boolean, String, String) to Matcher[T]
-  def endWithWorld: Matcher[String] = (s: String) => (s.endsWith("world"), s+" ends with world", s+" doesn't end with world")
+  def endWithWorld: Matcher[String] = { s: String =>
+    (s.endsWith("world"), s+" ends with world", s+" doesn't end with world")
+  }
 }
