@@ -79,6 +79,6 @@ class UnitSpec extends mutable.Specification {
     val string = "Hey you"
   }
 
-  class IncludedSpec extends Specification { def is = "introduction" ^ "example" ! success }
 }
 
+class IncludedSpec extends Specification { def is = "introduction" ^ "example" ! success }

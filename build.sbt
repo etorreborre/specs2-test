@@ -3,7 +3,7 @@ name := "specs2-test"
 
 organization := "org.specs2"
 
-scalaVersion := "2.10.4"
+scalaVersion := "2.11.5"
 
 /** Shell */
 shellPrompt := { state => "specs2> " }
@@ -26,7 +26,7 @@ libraryDependencies <++= version { version =>
     "org.specs2"      %% "specs2-scalacheck"   ,
     "org.specs2"      %% "specs2-mock"         ,
     "org.specs2"      %% "specs2-junit"        
-  ).map(_ % version) ++ Seq("com.chuusai"  % s"shapeless_2.10.4" % "2.0.0")
+  ).map(_ % version) ++ Seq("com.chuusai"  %% "shapeless" % "2.0.0")
 }
 
 scalacOptions ++= Seq("-Yrangepos", "-deprecation", "-unchecked", "-feature", "-language:_")
