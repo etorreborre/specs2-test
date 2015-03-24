@@ -7,5 +7,5 @@ To run tests:
 <code>sbt test</code>
 
 To generate html pages:
-<code>sbt test-only -- html</code>
+<code>sbt "test-only -- html"</code>
 
