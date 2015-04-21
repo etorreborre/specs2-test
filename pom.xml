@@ -4,24 +4,54 @@
     <groupId>org.specs2</groupId>
     <artifactId>specs2-test_2.11</artifactId>
     <packaging>jar</packaging>
-    <version>2.3.15</version>
+    <version>3.5</version>
     <dependencies>
         <dependency>
             <groupId>org.specs2</groupId>
-            <artifactId>specs2_2.11</artifactId>
-            <version>2.4.15</version>
+            <artifactId>specs2-core_2.11</artifactId>
+            <version>3.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.specs2</groupId>
+            <artifactId>specs2-junit_2.11</artifactId>
+            <version>3.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.specs2</groupId>
+            <artifactId>specs2-scalacheck_2.11</artifactId>
+            <version>3.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.specs2</groupId>
+            <artifactId>specs2-html_2.11</artifactId>
+            <version>3.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.specs2</groupId>
+            <artifactId>specs2-form_2.11</artifactId>
+            <version>3.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.specs2</groupId>
+            <artifactId>specs2-gwt_2.11</artifactId>
+            <version>3.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.11.4</version>
+            <version>2.11.6</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -31,7 +61,13 @@
             <name>Maven Repository</name> 
             <layout>default</layout> 
             <url>http://repo1.maven.org/maven2</url> 
-        </repository> 
+        </repository>
+        <repository>
+            <id>scalaz-stream</id>
+            <name>bintray/scalaz-stream</name>
+            <layout>default</layout>
+            <url>http://dl.bintray.com/scalaz/releases</url>
+        </repository>
     </repositories>
 	<build>
 	    <plugins>
